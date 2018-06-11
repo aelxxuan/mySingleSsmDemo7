@@ -1,0 +1,22 @@
+.Wdate{
+	border:#999 1px solid;
+	height:20px;
+	background:#fff url(datePicker.gif) no-repeat right;
+}
+
+.WdateFmtErr{
+	font-weight:bold;
+	color:red;
+}
+
+.td-date {
+	cursor: pointer;
+	font-style: normal;
+	float: left;
+	width: 28px;
+	height: 26px;
+	background-image: url(ico-xx.png);
+	background-repeat: no-repeat;
+	background-position: 0 -98px;
+}
+

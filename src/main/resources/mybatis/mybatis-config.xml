@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+
+
+    <typeAliases>
+        <typeAlias type="com.xuan.mysingle.common.user.User" alias="User"/>
+        <typeAlias type="com.xuan.mysingle.common.log.Log" alias="Log"/>
+        <typeAlias type="com.xuan.mysingle.common.application.Application" alias="Application"/>
+        <typeAlias type="com.xuan.mysingle.common.role.Role" alias="Role"/>
+        <typeAlias type="com.xuan.mysingle.common.product.Product" alias="Product"/>
+    </typeAliases>
+
+    <typeHandlers >
+        <typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler"/>
+    </typeHandlers>
+
+
+</configuration>

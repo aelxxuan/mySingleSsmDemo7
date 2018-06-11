@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xuan.mysingle.common.role.support.RoleRepository">
+    <cache/>
+
+
+    <sql id="columns">
+        id,name,applicationid
+    </sql>
+
+    <sql id="condition">
+        <where>
+            <if test="name!=null">
+                name LIKE concat('%',#{name},'%')
+            </if>
+        </where>
+    </sql>
+
+    <select id="getAll" resultType="Role">
+        SELECT
+        <include refid="columns"/>
+        FROM roles
+    </select>
+
+    <insert id="add" parameterType="Role">
+        INSERT INTO roles (
+        <include refid="columns"/>
+        ) VALUES (#{id},#{name},#{applicationId})
+    </insert>
+
+    <update id="update" parameterType="Role">
+        update roles SET  name=#{name},applicationid = #{applicationId}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="list">
+        DELETE  from roles where id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+
+    </delete>
+
+    <select id="getById" resultType="Role" parameterType="java.lang.String">
+        select <include refid="columns"/> from roles
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
+    <select id="getByPage" resultType="Role" parameterType="map">
+        SELECT  <include refid="columns"/> FROM  roles
+        <include refid="condition"/>
+        <include refid="core.page"/>
+    </select>
+
+    <select id="getCountByPage" parameterType="map" resultType="int">
+        SELECT  count(*) from roles
+        <include refid="condition"/>
+
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

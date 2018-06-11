@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xuan.mysingle.common.user.support.UserRepository">
+    <cache/>
+
+    <resultMap id="userMap" type="User">
+        <id column="userid" property="userId" jdbcType="VARCHAR"/>
+        <id column="loginname" property="loginName" jdbcType="VARCHAR"/>
+        <id column="password" property="password" jdbcType="VARCHAR"/>
+        <id column="name" property="name" jdbcType="VARCHAR"/>
+        <id column="picture" property="picture" jdbcType="VARCHAR"/>
+        <id column="phone" property="phone" jdbcType="VARCHAR"/>
+        <id column="addtime" property="addTime" />
+        <id column="userlastip" property="userLastIp" jdbcType="VARCHAR"/>
+        <id column="updatetime" property="updateTime" />
+    </resultMap>
+
+
+    <sql id="columns">
+        userid,loginname,password,name,picture,phone,addtime,userlastip,updatetime
+    </sql>
+    <sql id="columns_no_id">
+        loginname,password,name,picture,phone,addtime,userlastip,updatetime
+    </sql>
+    <!-- 根据userId获取-->
+    <select id="getById" resultType="User" parameterType="int" >
+        SELECT <include refid="columns"/>
+        FROM t_user
+        where userid =#{userId}
+    </select>
+    <!--分页获取数据 -->
+    <select id="getByPage" resultMap="userMap" parameterType="map">
+        SELECT <include refid="columns"/>
+        FROM t_user
+        <where>
+            <if test="name!=null">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+        order by userid DESC
+        limit #{pageIndex},#{pageSize}
+    </select>
+    <!--获取总数 -->
+    <select id="getCountByPage" resultType="int" parameterType="map">
+        SELECT count(*) FROM  t_user
+        <where>
+            <if test="name!=null">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+    <!--添加 -->
+    <insert id="add" parameterType="User">
+        INSERT  INTO  t_user (<include refid="columns_no_id"/>)
+        VALUES (#{loginName},#{password},#{name},#{picture},#{phone},#{addTime},#{userLastIp},#{updateTime})
+    </insert>
+    <!-- 更新-->
+    <update id="update" parameterType="User">
+        UPDATE  t_user
+        <set>
+            <if test="loginName!=null and loginName!=''">
+                loginname = #{loginName},
+            </if>
+            <if test="password!=null and password!=''">
+                password = #{password},
+            </if>
+            <if test="name !=null and name!=''">
+                name = #{name},
+            </if>
+            <if test="picture!=null and picture!=''">
+                picture =#{picture},
+            </if>
+            <if test="phone!=null and phone!=''">
+                phone = #{phone},
+            </if>
+            <if test="userLastIp!=null and userLastIp!=''">
+                userlastip = #{userLastIp},
+            </if>
+            <if test="updateTime!=null">
+                updatetime = #{updateTime}
+            </if>
+        </set>
+        <where>
+            userid = #{userId}
+        </where>
+    </update>
+    <!-- 根据UserId删除-->
+    <delete id="delete" parameterType="int">
+        DELETE FROM t_user where userid = #{userId}
+    </delete>
+
+    <select id="getByPhone" resultType="User" parameterType="java.lang.String">
+        SELECT <include refid="columns"/>
+        FROM t_user
+        where phone =#{phone}
+    </select>
+
+    <select id="getByLoginName" resultType="User" parameterType="java.lang.String">
+        SELECT <include refid="columns"/>
+        FROM t_user
+        where loginname =#{userName}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,24 @@
+package com.xuan.mysingle.common.support;
+
+/**
+ * @author xuanzongjun
+ * @since 1.0
+ * Date: 2018/5/22
+ */
+public interface Pageable {
+    long getPageNumber();
+
+    int getPageSize();
+
+    long getOffset();
+
+    Sort getSort();
+
+    Pageable next();
+
+    Pageable previousOrFirst();
+
+    Pageable first();
+
+    boolean hasPrevious();
+}

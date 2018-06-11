@@ -1,0 +1,178 @@
+@charset "utf-8";
+*{
+	margin:0; 
+	padding:0;
+	font-family: arial,"Hiragino Sans GB","Microsoft YaHei","微软雅黑","宋体",sans-serif;
+}
+* html body{
+	overflow:visible;
+}
+* html iframe, * html frame {
+	overflow:auto;
+}
+* html frameset {
+	overflow:hidden;
+}
+html,body{
+	width:100% !important;
+	height:inherit !important;
+	float:left;
+}
+.inlineBlock{ display:inline-block; }
+
+body {
+	color:#000; 
+	font-size: 12px; 
+	text-align:center; 
+	background:#F1F1F1;
+}
+body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div, tr {
+	margin:0; 
+	padding:0;
+	font-weight: normal;
+}
+input, select {
+	font-size:12px; 
+	vertical-align:middle;
+}
+body div {
+	text-align:left;
+}
+textarea, input {
+	word-wrap:break-word; 
+	word-break:break-all; 
+	padding:0px;
+}
+li {
+	list-style-type:none;
+	float:left;
+	width:100%;
+}
+img {
+	border:0 none;
+}
+::-ms-clear, ::-ms-reveal{display: none;}
+.input::-ms-clear { display: none; }
+.input:valid + .clear{ display: inline; }
+a {color:#000; text-decoration:none;}
+a:hover {color:#628828;}
+a,input {outline:none; star:expression_r(this.onFocus=this.blur());}
+h1 { font-size:24px; }
+h2 { font-size:20px; }
+h3 { font-size:18px; }
+h4 { font-size:16px; }
+h5 { font-size:14px; }
+h6 { font-size:12px; }
+.pointer { cursor:pointer; }
+.NoBorder { border:0 none; }
+.NoPadding { padding:0; }
+.t_l { text-align:left; }
+.t_c { text-align:center; }
+.t_r { text-align:right; }
+.Break { word-break:break-all; word-wrap:break-word; }
+.Nobreak { word-break:keep-all; word-wrap:normal; }
+.Fl { float:left !important; }
+.Fr { float:right !important; }
+.UnLine { text-decoration:underline; }
+.DisunLine { text-decoration:none; }
+.absolute { position:absolute; }
+.relative { position:relative; }
+.wrapper { clear:both; overflow:hidden; }
+.o-hidden { overflow:hidden; }
+.invisible { visibility:hidden; }
+.hidden { display:none; }
+.block { display:block; }
+.clear { clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden; }
+.fb { font-weight:bold; }
+.fn { font-weight:normal; }
+.fi { font-style:italic; }
+.f10 { font-size:10px; }
+.f11 { font-size:11px; }
+.f12 { font-size:12px; }
+.f13 { font-size:13px; }
+.f14 { font-size:14px; }
+.f16 { font-size:16px; }
+.f18 { font-size:18px; }
+.divh5, .divh10, .divh15, .divh20, .divh25, .divh30, .divh1, .divh40
+{ 
+	width:100%; 
+	overflow:hidden; 
+}
+.divh1 { height:1px !important; }
+.divh5 { height:5px !important; }
+.divh8 { height:8px !important; }
+.divh10 { height:10px !important;}
+.divh15 { height:15px !important; }
+.divh20 { height:20px !important; }
+.divh25 { height:25px !important; }
+.divh30 { height:30px !important; }
+.divh40 { height:40px !important; }
+.divh60 { height:60px !important; }
+.divh80 { height:80px !important; }
+.lh1 { line-height:1px; }
+.lh10 { line-height:10px; }
+.lh15 { line-height:15px; }
+.lh18 { line-height:18px; }
+.lh20 { line-height:20px; }
+.lh25 { line-height:25px; }
+.lh30 { line-height:30px; }
+.lh35 { line-height:35px; }
+.color_green { color:#85c226; }
+.color_red { color:#e8470a; }
+.color_red1 { color:#F00; }
+.color_yellow { color:#bf0000; }
+.color_gray{ color:#666 !important; }
+.ml10{ margin-left: 10px; }
+.ml20{ margin-left: 20px; }
+.mt20{ margin-top: 20px; }
+.backNo{
+	background: none !important;
+}
+input{
+	overflow:visible;
+}
+input[type="text"]:disabled{
+	background: #fff !important;
+}
+input[type="submit"]:disabled,input[type="button"]:disabled{
+	background: #ddd !important;
+}
+
+input[type="submit"],input[type="button"]{
+	cursor:pointer;
+	border-radius:0px
+}
+input[disabled]:hover{
+	background: #ddd !important;
+}
+
+/*邮箱下拉列表样式区*/
+ul.email-list{
+	width:100%;
+	line-height: 30px;
+	border:1px solid #eee;
+	border-bottom: 0px;
+	position: absolute;
+	z-index: 1000111;
+	left:0px;
+	top:50px;
+}
+ul.email-list li{
+	border-bottom: 1px solid #eee;
+	height: 30px !important;
+	line-height: 30px !important;
+	margin:0px !important;
+	padding: 0px 2%;
+	float: left;
+	width:96% !important;
+	color:#555;
+	background: #fff;
+}
+ul.email-list li:hover{
+	background:#eee;
+}
+@media screen and (max-width: 900px) {
+	body{
+		background: none !important;
+	}
+}

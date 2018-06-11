@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <bean id="keyGenerator" class="com.xuan.mysingle.core.cache.support.CustomKeyGenerator"/>
+    <bean id="jsonKeySerializer" class="com.xuan.mysingle.core.cache.support.JsonRedisSerializer"/>
+
+    <!-- enables scanning for cache annotations -->
+    <cache:annotation-driven key-generator="keyGenerator" mode="aspectj"/>
+
+    <bean id="jsonRedisTemplate" class="com.xuan.mysingle.core.cache.support.JsonRedisTemplate">
+        <constructor-arg ref="jedisConnectionFactory"/>
+        <property name="keySerializer" ref="jsonKeySerializer"/>
+    </bean>
+
+    <bean id="redisTemplate" class="com.xuan.mysingle.core.cache.support.JsonRedisTemplate">
+        <constructor-arg ref="jedisConnectionFactory"/>
+    </bean>
+
+    <bean id="cacheManager" class="com.xuan.mysingle.core.cache.support.RedisCacheManager">
+        <constructor-arg ref="jedisConnectionFactory"/>
+        <property name="defaultTemplate" ref="jsonRedisTemplate"/>
+        <property name="defaultExpiration" value="7200"/><!-- seconds -->
+        <property name="dynamic" value="true"/>
+        <property name="caches">
+            <set>
+                <bean class="com.xuan.mysingle.core.cache.support.RedisCacheInfo">
+                    <constructor-arg
+                            value="#{T(com.xuan.mysingle.core.cache.support.CacheableRestClient).CACHE_NAME}"/>
+                    <property name="expiration" value="7200"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+</beans>

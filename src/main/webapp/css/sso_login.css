@@ -1,0 +1,68 @@
+
+/*���ع��ںż�����logo���ر�*/
+.wrap-login-top,.publicNumber{
+	display:none;
+}
+
+/*����Ϊsso_login.htmlҳ�����ʽ*/
+.top,.center,.footer{
+	width:100%;
+	float: left;
+}
+.cten{
+	width:800px;
+	margin:0px auto;
+	background: #fff;
+}
+.top .cten{
+	padding-top:50px;
+	text-align: center;
+}
+.top .cten span{
+	font-size: 15px;
+	color:#333;
+	margin-left:10px;
+}
+.center .cten{
+	min-height: 410px;
+	_height: 410px;
+}
+.footer{
+	text-align: center;
+	font-size: 13px;
+	color:#999;
+	margin-top: 20px;
+	height:auto !important;
+}
+.footer .cten{
+	background: none;
+}
+.footer p{
+	line-height: 30px;
+	width:100%;
+	float: left;
+	text-align: center;
+}
+.footer p a{
+	color:#288ff2;
+	margin:0px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

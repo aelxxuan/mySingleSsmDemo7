@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xuan.mysingle.common.application.support.ApplicationRepository">
+    <cache/>
+
+    <resultMap id="resultMap" type="Application">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <id column="name" property="name" jdbcType="VARCHAR"/>
+        <id column="url" property="url" jdbcType="VARCHAR"/>
+        <id column="ssoid" property="ssoId" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <sql id="columns">
+        id,name,url,ssoid
+    </sql>
+    <sql id="conditions">
+        <where>
+            <if test="name !=null and name != ''">
+                and name like concat ('%',#{name},'%')
+            </if>
+        </where>
+    </sql>
+    <!--分页查询应用列表 -->
+    <select id="getByPage" parameterType="map" resultMap="resultMap">
+        SELECT
+        <include refid="columns"/>
+        FROM applications
+        <include refid="conditions"/>
+        <include refid="core.page"/>
+    </select>
+
+    <!-- 查询应用总数-->
+    <select id="getCountByPage" resultType="int" parameterType="map">
+        SELECT count(*) FROM applications
+        <include refid="conditions"/>
+    </select>
+
+    <!--获取所有应用 -->
+    <select id="getAll" resultMap="resultMap">
+        SELECT
+        <include refid="columns"/>
+        FROM applications
+    </select>
+    <!--添加应用 -->
+    <insert id="add" parameterType="Application">
+        INSERT INTO applications (<include refid="columns"/>)
+        VALUES (#{id},#{name},#{url},#{ssoId})
+    </insert>
+    <!--根据ID修改应用 -->
+    <update id="update" parameterType="Application">
+        UPDATE applications set name=#{name},url=#{url},ssoid=#{ssoId}
+        WHERE  id = #{id}
+    </update>
+    <!-- 根据主键删除应用-->
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE  FROM  applications WHERE id = #{id}
+    </delete>
+    <!-- 根据ID查询应用-->
+    <select id="getById" resultMap="resultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="columns"/>
+        FROM applications
+        WHERE id = #{id}
+    </select>
+
+
+</mapper>

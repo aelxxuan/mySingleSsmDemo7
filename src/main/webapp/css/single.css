@@ -1,0 +1,59 @@
+body {
+    font-family: Microsoft YaHei, serif;
+}
+
+button.btn > i.fa {
+    padding-right: 6px;
+}
+
+body,h2,h3,ul,li,p{
+    margin:0px;
+    padding: 0px;
+    font-family: "微软雅黑";
+    list-style: none;
+    font-weight: normal;
+}
+
+.mart10 {
+    margin-top: 10px;
+}
+
+
+/*整理的行内样式*/
+#pageMain{
+    position:absolute;
+    width:100%;
+    height:93.7%;
+}
+
+#page-wrapper {
+    position:relative;
+    height:100%;
+    overflow-y: auto;
+}
+.page-wrapper-pl{
+    padding-left:0px !important;
+    margin-left:70px !important;
+}
+@media screen and (max-width:768px){
+    .page-wrapper-pl{
+        padding-left:0px !important;
+        margin-left:0px !important;
+    }
+    #page-wrapper{
+        margin-left:0px;
+        padding-left:0px;
+    }
+
+    .pageform-body{
+        width:98%;
+    }
+}
+#page-wrapper>div{
+    /*background:#fff;*/
+    /* height:100%; */
+}
+#page-wrapper .row{
+    margin:0px;
+}
+

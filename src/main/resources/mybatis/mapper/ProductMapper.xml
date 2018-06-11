@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xuan.mysingle.common.product.support.ProductRepository">
+    <cache/>
+
+
+    <sql id="columns">
+        id,name,applicationid,groupid,roleid
+    </sql>
+
+    <sql id="condition">
+        <where>
+            <if test="name!=null and name!=''">
+                name LIKE concat('%',#{name},'%')
+            </if>
+        </where>
+    </sql>
+
+    <!-- 添加-->
+    <insert id="add" parameterType="Product">
+        insert into products (
+        <include refid="columns"/>
+        )
+        VALUES (#{id},#{name},#{applicationId},#{groupId},#{roleId})
+    </insert>
+    <!-- 修改 -->
+    <update id="update" parameterType="Product">
+        update products
+        <set>
+            <if test="name != null and name !=''">
+                name = #{name},
+            </if>
+            <if test="applicationId !=null">
+                applicationid = #{applicationId},
+            </if>
+            <if test="groupId !=null and groupId !=0">
+                groupid = #{groupId},
+            </if>
+            <if test="roleId !=null">
+                roleid = #{roleId}
+            </if>
+
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.String">
+        delete from products where id = #{productId}
+    </delete>
+    <!--分页获取数据 -->
+    <select id="getByPage" parameterType="map" resultType="Product">
+        SELECT <include refid="columns"/>
+        FROM  products
+        <include refid="condition"/>
+        <include refid="core.page"/>
+    </select>
+
+    <!-- 获取分页总数-->
+    <select id="getCountByPage" parameterType="map" resultType="int">
+        SELECT  count(*) from products
+        <include refid="condition"/>
+    </select>
+
+    <!--根据ID查找 -->
+    <select id="getById" resultType="Product" parameterType="int">
+        SELECT  <include refid="columns"/> FROM  products
+        <where>
+              id = #{id}
+        </where>
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
